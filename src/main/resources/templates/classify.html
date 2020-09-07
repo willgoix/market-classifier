@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f3f3">
+
+    <title>Classificar - Market Classifier</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/sidebar.css">
+    <link rel="stylesheet" href="/styles/partials/markets.css">
+    <link rel="stylesheet" href="/styles/partials/criteras.css">
+    <link rel="stylesheet" href="/styles/partials/rating.css">
+    <link rel="stylesheet" href="/styles/partials/page-classify.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+</head>
+
+<body id="page-classify">
+
+    <div class="sidebar">
+        <img th:src="${'https://ui-avatars.com/api/?name='+ collaborator.email +'&background=f3f3f3&color=1b1c25&rounded=true&size=40'}"
+             th:title="${collaborator.email}"
+             th:alt="${collaborator.email}"/>
+        <a class="logout" href="/logout" title="Desconectar"><i class="material-icons">power_settings_new</i></a>
+        <a href="/classification"><i class="material-icons">grade</i></a>
+        <a href="/markets"><i class="material-icons">local_grocery_store</i></a>
+    </div>
+
+    <div id="container">
+        <div id="container-classify">
+
+            <h3 class="title" th:text="${'Avalie o mercado '} + ${market.name} + ${'!'}"></h3>
+            <p class="title">Clique nas estrelas para deixar sua avaliação</p>
+
+            <div class="market-container">
+                <img class="image" th:src="${market.imageUrl}" th:alt="${market.name}"/>
+
+                <div class="right">
+                    <p class="name" th:text="${market.name}"></p>
+                    <div class="block">
+                        <p class="star-rating star-rating-checked" th:text="${market.getWeightedAverage()}"></p>
+                        <i class="material-icons star-rating star-rating-checked">star</i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="criteras-container">
+                <form id="form-rating" th:action="@{/markets/classify/{marketId}(marketId=${market.id})}" th:object="${ratingForm}" method="POST" class="critera-stars rating">
+                    <div class="critera-container" th:each="rating : ${ratingForm.ratings.entrySet()}">
+                        <p class="critera-name" th:text="${rating.key.getDisplayName()}">Critério</p>
+
+                        <div class="critera-stars rating">
+                            <th:block th:each="i: ${#numbers.sequence(5, 1)}" th:with="randomId=${#strings.randomAlphanumeric(5)}">
+                                <input th:id="${randomId}" th:field="*{ratings['__${rating.key}__']}" th:value="${i}" type="radio"/>
+                                <label th:for="${randomId}"></label>
+                            </th:block>
+                        </div>
+
+                        <p class="critera-average" th:text="${rating.value}">...</p>
+                    </div>
+                </form>
+            </div>
+
+            <button id="button-send-rating" form="form-rating" type="submit">Enviar avaliação</button>
+        </div>
+    </div>
+
+</body>
+
+</html>

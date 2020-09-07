@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f3f3">
+
+    <title>Mercados - Market Classifier</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/sidebar.css">
+    <link rel="stylesheet" href="/styles/partials/search.css">
+    <link rel="stylesheet" href="/styles/partials/markets.css">
+    <link rel="stylesheet" href="/styles/partials/criteras.css">
+    <link rel="stylesheet" href="/styles/partials/page-markets.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+
+    <script src="/scripts/openClassifyModal.js" defer></script>
+</head>
+
+<body id="page-markets">
+
+    <div class="sidebar">
+        <img th:src="${'https://ui-avatars.com/api/?name='+ collaborator.email +'&background=f3f3f3&color=1b1c25&rounded=true&size=40'}"
+            th:title="${collaborator.email}" th:alt="${collaborator.email}" />
+        <a class="logout" href="/logout" title="Desconectar"><i class="material-icons">power_settings_new</i></a>
+        <a href="/classification" title="Classificação"><i class="material-icons">grade</i></a>
+        <a href="/markets" title="Mercados"><i class="material-icons">local_grocery_store</i></a>
+    </div>
+
+    <div id="container">
+        <div class="container-markets">
+            <form th:action="@{/markets}" th:object="${market}" method="POST">
+                <input class="search-input" name="search" th:value="${search}" type="text"
+                    placeholder="Pesquisar mercados por nome...">
+            </form>
+        </div>
+
+        <div class="container-markets">
+
+            <div th:if="${markets == null || markets.isEmpty()}">
+                <h3>Nenhum mercado encontrado</h3>
+            </div>
+
+            <div th:if="${markets != null && not markets.isEmpty()}">
+                <h3
+                    th:text="${markets.size() == 1} ? ${'1 mercado foi encontrado'} : ${markets.size() +' mercados foram encontrados'}">
+                </h3>
+            </div>
+
+            <div class="market" th:each="market: ${markets}">
+                <div class="market-container">
+                    <img class="image" th:src="${market.imageUrl}" th:alt="${market.name}" />
+
+                    <div class="right">
+                        <p class="name" th:text="${market.name}"></p>
+                        <div class="block">
+                            <p class="star-rating star-rating-checked" th:text="${market.getWeightedAverage()}"></p>
+                            <i class="material-icons star-rating star-rating-checked">star</i>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="criteras-container">
+                    <div class="critera-container" th:if="${market.getRatings().isEmpty()}">
+                        <div class="no-classifications">
+                            <p>Sem avaliações até o momento</p>
+                        </div>
+                    </div>
+
+                    <div class="critera-container" th:each="ratings: ${market.getRatings()}">
+                        <p class="critera-name" th:text="${ratings.key.getDisplayName()}">Critério</p>
+
+                        <div class="critera-stars">
+                            <th:block th:each="i: ${#numbers.sequence(1, 5)}">
+                            <i class="material-icons star-rating" th:classappend="${i <= ratings.value.getRatingAverage()} ? star-rating-checked">star</i>
+                        </th:block>
+                    </div>
+
+                    <p class="critera-average" th:text="${ratings.value.getRatingAverage()}">...</p>
+                </div>
+            </div>
+
+
+            <form class="classify-form" th:action="@{/markets/{marketId}(marketId=${market.id})}" th:method="POST">
+                <button class="classify-button" name="${market.id}" type="submit"
+                        th:text="${collaborator.canVote()} ? ${'Avaliar'} : ${'Já avaliou'}"
+                        th:title="${collaborator.canVote()} ? ${'Clique para avaliar!'} : ${'Você pode avaliar somente um mercado por semana.'}"
+                        th:disabled="${not collaborator.canVote()}"
+                >Avaliar</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

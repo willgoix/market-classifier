@@ -1,0 +1,62 @@
+:root {
+    --color-background: #f3f3f3;
+
+    --color-primary-light: #00b7c2;
+    --color-primary: #0f4c75;
+    --color-primary-dark: #1b262c;
+
+    --color-title-primary: #1f4068;
+    --color-text-primary: #1b1c25;
+    --color-text-complement: #0f4c75;
+
+    --color-container-light: #fffff;
+    --color-container: #dddddd;
+    --color-input-background: #dddddd;
+    --color-button-text: #dddddd;
+
+    --color-error: #ff4b5c;
+
+    font-size: 60%;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, 
+body {
+    height: 100vh;
+}
+
+body {
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font: 500 1.4rem Poppins;
+    color: var(--color-text-primary);
+}
+
+input,
+button {
+    font: 500 1.6rem Poppins;
+    color: var(--color-button-text);
+}
+
+#container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+}
+
+@media (min-width: 104px) {
+    :root {
+        font-size: 62.5%; /* um 1rem é igual à 10px */
+    }
+}

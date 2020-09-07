@@ -1,0 +1,60 @@
+#page-markets {
+    background: var(--color-background);
+}
+
+#container {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 2rem;
+}
+
+.container-markets {
+   width: 80%;
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 4rem;
+
+   padding: 1.5rem 2rem;
+   border-radius: 1.6rem;
+   background: var(--color-container);
+}
+
+.container-markets h3 {
+    text-align: center;
+    padding: 1rem;
+}
+
+.market {
+  display: flex;
+  flex-direction: row;
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
+  border-bottom: 1px solid var(--color-background);
+}
+
+.classify-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.classify-button {
+    background: var(--color-primary);
+    color: var(--color-button-text);
+    padding: 1rem;
+    border: 0;
+    border-radius: 0.4rem;
+    font: 500 1.6rem Poppins;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.classify-button:hover {
+    background-color: var(--color-primary-dark);
+}
+
+.classify-button:enabled,
+.classify-button:disabled {
+    outline: none;
+}

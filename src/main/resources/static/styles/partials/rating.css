@@ -1,0 +1,73 @@
+.rating {
+    float:left;
+}
+
+.rating:not(:checked) > input {
+    position: absolute;
+    clip: rect(0, 0, 0, 0);
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+}
+
+.rating:not(:checked) > label {
+    float: right;
+    width: 1em;
+    padding: 0 .1em;
+    overflow: hidden;
+    white-space: nowrap;
+    cursor: pointer;
+    font-size: 200%;
+    line-height: 1.2;
+    color: #ddd;
+    text-shadow: 1px 1px #bbb, 2px 2px #666, .1em .1em .2em rgba(0,0,0,.5);
+}
+
+.rating:not(:checked) > label:before {
+    content: '★ ';
+}
+
+.rating > input:checked ~ label {
+    color: #ffb831;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+    color: #ffb831;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+    color: #ffb831;
+}
+
+.rating > label:active {
+    position: relative;
+    top: 2px;
+    left: 2px;
+}
+
+#button-send-rating {
+    background: var(--color-primary);
+    color: var(--color-button-text);
+    padding: 1rem;
+    border: 0;
+    border-radius: 0.4rem;
+    font: 500 1.6rem Poppins;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+#button-send-rating:hover {
+    background-color: var(--color-primary-dark);
+}
+
+#button-send-rating:enabled,
+#button-send-rating:disabled {
+    outline: none;
+}

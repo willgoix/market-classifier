@@ -1,0 +1,16 @@
+.search-input {
+  border: none;
+  outline: none;
+
+  width: 100%;
+  padding: 1rem;
+  padding-left: 1.6rem;
+  border-radius: 1.6rem;
+
+  /* font */
+  font-family: Poppins;
+  font-size: 1.4rem;
+  line-height: 2.4rem;
+  letter-spacing: 0.044rem;
+  color: var(--color-text-complement);
+}

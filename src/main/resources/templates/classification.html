@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f3f3">
+
+    <title>Classificação - Market Classifier</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/sidebar.css">
+    <link rel="stylesheet" href="/styles/partials/markets.css">
+    <link rel="stylesheet" href="/styles/partials/criteras.css">
+    <link rel="stylesheet" href="/styles/partials/page-classification.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+</head>
+
+<body id="page-classification">
+
+    <div class="sidebar">
+        <img th:src="${'https://ui-avatars.com/api/?name='+ collaborator.email +'&background=f3f3f3&color=1b1c25&rounded=true&size=40'}"
+             th:title="${collaborator.email}"
+             th:alt="${collaborator.email}" />
+        <a class="logout" href="/logout" title="Desconectar"><i class="material-icons">power_settings_new</i></a>
+        <a href="/classification" title="Classificação"><i class="material-icons">grade</i></a>
+        <a href="/markets" title="Mercados"><i class="material-icons">local_grocery_store</i></a>
+    </div>
+
+    <div id="container">
+        <div id="container-classification">
+            <h3 class="title">O melhor mercado segundo nossos colaboradores!</h3>
+
+            <div class="countdown">
+                <p>O próximo mercado será escolhido em:</p>
+                <p id="countdown">...</p>
+            </div>
+
+            <div class="market-container">
+                <img class="image"
+                     th:src="${market.imageUrl}"
+                     th:alt="${market.name}"
+                     th:title="${market.name}"/>
+
+                <div class="right">
+                    <p class="name" th:text="${market.name}"></p>
+                    <div class="block">
+                        <p class="star-rating star-rating-checked" th:text="${market.getWeightedAverage()}"></p>
+                        <i class="material-icons star-rating star-rating-checked">star</i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="criteras-container best-criteras-container">
+                <div class="critera-container" th:if="${market.getRatings().isEmpty()}">
+                    <div class="no-classifications">
+                        <p>Sem avaliações até o momento</p>
+                    </div>
+                </div>
+
+                <div class="critera-container" th:each="ratings: ${market.getRatings()}">
+                    <p class="critera-name" th:text="${ratings.key.getDisplayName()}">Critério</p>
+
+                    <div class="critera-stars">
+                        <th:block th:each="i: ${#numbers.sequence(1, 5)}">
+                            <i class="material-icons star-rating" th:classappend="${i <= ratings.value.getRatingAverage()} ? star-rating-checked">star</i>
+                        </th:block>
+                    </div>
+
+                    <p class="critera-average" th:text="${ratings.value.getRatingAverage()}">...</p>
+                </div>
+
+        </div>
+
+    </div>
+
+    <script th:inline="javascript">
+        var countdownDate = new Date([[${nextMarketDate}]]).getTime();
+        const countdownElement = document.getElementById("countdown");
+
+        const task = setInterval(function () {
+            var now = new Date().getTime();
+
+            var difference = countdownDate - now;
+
+            var days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            var timeString = "";
+
+            if (days > 0) {
+                timeString += days + " dia"+ (days == 1 ? "" : "s") +", "
+            }
+            if (hours > 0) {
+                timeString += hours + " hora"+ (hours == 1 ? "" : "s") +", "
+            }
+            if (minutes > 0) {
+                timeString += minutes + " minuto"+ (minutes == 1 ? "" : "s")
+                timeString += (seconds == 0 ? "" : " e ")
+            }
+            if (seconds > 0) {
+                timeString += seconds + " segundo"+ (minutes == 1 ? "" : "s")
+            }
+
+            countdownElement.innerHTML = timeString
+
+            if (difference < 0) {
+                clearInterval(task);
+                countdownElement.innerHTML = "Atualize a página para ver o novo melhor mercado!";
+            }
+        }, 1000);
+    </script>
+</body>
+
+</html>

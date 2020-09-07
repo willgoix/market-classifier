@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f3f3">
+
+    <title>Criar conta - Market Classifier</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/forms.css">
+    <link rel="stylesheet" href="/styles/partials/page-register.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+</head>
+
+<body id="page-register">
+
+    <div id="container">
+        <h3>Market Classifier</h3>
+
+        <form id="form-register" th:action="@{/register}" th:object="${collaborator}" method="POST">
+            <section>
+                <div class="input-block">
+                    <label for="email">Email</label>
+
+                    <i class="material-icons">mail</i>
+                    <input name="email" id="email" type="text" required>
+                </div>
+
+                <div class="input-block">
+                    <label for="password">Senha</label>
+
+                    <i class="material-icons">lock</i>
+                    <input name="password" id="password" type="password" required>
+                </div>
+
+                <div class="select-block">
+                    <label for="team">Seu time</label>
+
+                    <i class="material-icons">group</i>
+                    <select name="team" id="team">
+                        <option value="" disabled="" hidden="">Selecione o seu time</option>
+
+                        <option
+                            th:each="team : ${T(com.github.willgoix.marketclassifier.models.enums.EnumTeam).values()}"
+                            th:value="${team}" th:text="${team.displayName}">
+                        </option>
+                    </select>
+                </div>
+            </section>
+
+            <p class="error" th:if="${registerError != null}" th:text="${registerError}"></p>
+
+            <button id="button-register" form="form-register" type="submit">Criar conta</button>
+
+            <a id="back" href="/">Voltar</a>
+        </form>
+    </div>
+
+</body>
+
+</html>

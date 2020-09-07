@@ -1,0 +1,36 @@
+#page-classify {
+    background: var(--color-background);
+}
+
+#container {
+    flex-direction: column;
+    justify-content: flex-start;
+    margin-top: 2rem;
+}
+
+#container-classify {
+    width: 90vw;
+    max-width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    justify-self: center;
+
+    padding: 1.5rem 2rem;
+
+    border-radius: 1.6rem;
+    background: var(--color-container);
+}
+
+#container-classify .title {
+    text-align: center;
+}
+
+.market-container {
+    margin-top: 2rem;
+}
+
+.criteras-container {
+    margin: 2rem 0;
+}
+

@@ -1,0 +1,62 @@
+.criteras-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    margin: 0 3rem;
+    padding: 0.4rem;
+    border-radius: 1rem;
+
+    background: var(--color-background);
+    float: left;
+}
+
+.critera-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr;
+    grid-template-areas:
+    "critera stars average";
+    column-gap: 1rem;
+}
+
+.critera-name {
+    grid-area: critera;
+    text-align: left;
+    align-self: center;
+    justify-self: center;
+    margin-right: 0.8rem;
+}
+
+.critera-stars {
+    grid-area: stars;
+    gap: 0.4rem;
+}
+
+.no-classifications {
+    grid-area: stars;
+    gap: 0.4rem;
+    text-align: center;
+}
+
+.critera-average {
+    grid-area: average;
+    align-self: center;
+    font-size: 1.5rem;
+    margin-left: 0.8rem;
+}
+
+.star-rating {
+    font-size: 2rem;
+    color: #75766f;
+}
+
+.star-rating-checked {
+    color: #ffb831;
+}
+
+.teste {
+    display: flex;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt_br" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f3f3f3">
+
+    <title>Entrar - Market Classifier</title>
+
+    <link rel="stylesheet" href="/styles/main.css">
+    <link rel="stylesheet" href="/styles/partials/forms.css">
+    <link rel="stylesheet" href="/styles/partials/page-auth.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins&display=swap">
+</head>
+
+<body id="page-auth">
+
+    <div id="container">
+        <h3>Market Classifier</h3>
+
+        <form id="form-auth" th:action="@{/auth}" th:object="${collaborator}" method="POST">
+            <section>
+                <div class="input-block">
+                    <label for="email">Email</label>
+
+                    <i class="material-icons">mail</i>
+                    <input name="email" id="email" type="text" autofocus="autofocus" required>
+                </div>
+
+                <div class="input-block">
+                    <label for="password">Senha</label>
+
+                    <i class="material-icons">lock</i>
+                    <input name="password" id="password" type="password" required>
+                </div>
+            </section>
+
+            <p class="error" th:if="${authError != null}">Email ou senha inválidos.</p>
+
+            <button id="button-login" form="form-auth" type="submit">Entrar</button>
+
+            <div class="register-redirect">
+                <p>Não tem uma conta?</p>
+                <a href="/register">Registre-se</a>
+            </div>
+
+        </form>
+    </div>
+
+</body>
+
+</html>

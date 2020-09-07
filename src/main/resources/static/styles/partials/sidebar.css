@@ -1,0 +1,52 @@
+#container {
+  margin-left: 8rem;
+}
+
+.sidebar {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 8rem;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  gap: 1.4rem;
+
+  background-color: var(--color-primary);
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: var(--color-background);
+  display: block;
+}
+
+.sidebar a:hover {
+  color: var(--color-primary-light);
+}
+
+.sidebar img {
+  position: absolute;
+  top: 1.4rem;
+}
+
+.sidebar .logout {
+  position: absolute;
+  top: 7rem;
+}
+
+@media (min-width: 800px) {
+    .sidebar {
+        padding-top: 1.5rem;
+    }
+
+    .sidebar a {
+        font-size: 1.8rem;
+    }
+}
