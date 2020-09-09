@@ -1,4 +1,4 @@
-<h3 align="center">Market Classifier</h3>
+<h2 align="center">Market Classifier</h2>
 
 <p align="center">	
    <a href="https://www.linkedin.com/in/willian-gois/">
@@ -10,7 +10,7 @@
     <a href="#sobre">Sobre</a>&nbsp;|&nbsp;
     <a href="#sobre-o-código-e-tecnologias">Sobre o código e tecnologias</a>&nbsp;|&nbsp;
     <a href="#tecnologias-utilizadas">Tecnologias</a>&nbsp;|&nbsp;
-    <a href="#como-executar-o-projeto">Executando o projeto</a>&nbsp;|&nbsp;
+    <a href="#como-executar-o-projeto">Executando o projeto</a>&nbsp
 </div>
 
 ## Sobre
@@ -23,7 +23,7 @@ Aplicação desenvolvida como teste prático de programação para o ingresso na
 ## Sobre o código e tecnologias
 A primeira questão durante o planejamento do projeto foi sobre quais tecnologias seriam utilizadas: ou utilizar algo hoje não usual no mercado, como JavaFX, mas que já possuo conhecimentos, ou utilizava Spring, a mais produtiva e utilizada framework para Java de hoje, e também, tecnologia a qual nunca antes havia estudo ou utilizado. No fim, Spring foi a melhor escolha, e além de desenvolver essa aplicação, pude adqurir e aplicar um conhecimento novo. 
 
-Por conta da utilização do Spring, mais da metade do tempo de desenvolvimento foi no frontend (HTML, CSS, JavaScript), além de que, Spring é uma linguagem focada em produtividade, o que curiosamente talvez não é o melhor para este projeto em específico, pois não pude e não precisei escrever tanto código em Java.
+Por conta da utilização do Spring, mais da metade do tempo de desenvolvimento se deu frontend (HTML, CSS, JavaScript), além de que, Spring é uma linguagem focada em produtividade, o que curiosamente talvez não é o melhor para este projeto em específico, pois não pude e não precisei escrever tanto código em Java.
 
 Para o armazenamento em memória, foi utilizado o H2 Database, por conta da boa compatibilidade com o sistema Spring Boot.
  
@@ -42,7 +42,7 @@ Alguns pontos que devem ser revistos para uma eventual utilização real da apli
 
 ## Tecnologias utilizadas
 -  [Java](https://www.java.com/)
--  [Spring](https://spring.io/projects/spring-boot)
+-  [Spring Boot](https://spring.io/projects/spring-boot)
 -  [Spring Data](https://spring.io/projects/spring-data)
 -  [Spring Security](https://spring.io/projects/spring-security)
 -  [Thymeleaf](https://www.thymeleaf.org)
@@ -52,7 +52,7 @@ Alguns pontos que devem ser revistos para uma eventual utilização real da apli
 ---
 
 ## Como executar o projeto
-Exigências mínimas para o executar o projeto:
+Exigências mínimas para executar o projeto:
 -  Maven 3.2+ instalado;
 -  JDK 6+ instalado;
 -  E caso utilizando Windows, um Shell instalado (ex: Git Bash). 
